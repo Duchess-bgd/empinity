@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+
+class CategoryController extends Controller
+{
+    /**
+     * GET /api/categories
+     * Returns a list of all categories
+     */
+    public function index()
+    {
+        $categories = Category::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $categories,
+        ]);
+    }
+}
