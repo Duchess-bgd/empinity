@@ -13,3 +13,11 @@ test('categories endpoint returns seeded categories', function () {
         ->assertJsonFragment(['name' => 'Electronics'])
         ->assertJsonFragment(['name' => 'Home & Garden']);
 });
+
+test('categories endpoint returns empty array when none exist', function () {
+    $response = $this->getJson('/api/categories');
+
+    $response->assertOk()
+        ->assertJsonPath('success', true)
+        ->assertJsonCount(0, 'data');
+});
